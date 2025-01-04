@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <audio id="music" controls loop>
+        <source src="music.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
     <div id="gameContainer" class="container">
         <div id="paddle"></div>
         <div id="ball"></div>
@@ -25,6 +29,7 @@
     </div>
     
     <script>
+        const music = document.getElementById("music");
         const gameContainer = document.getElementById("gameContainer");
         const paddle = document.getElementById("paddle");
         const ball = document.getElementById("ball");
@@ -61,7 +66,7 @@
         
         const powerUpsInfo = [
             { type: "ExpandPaddle", chance: 30 }, // 30% chance
-            { type: "Shield", chance: 5 }, // 5% chance
+            { type: "Shield", chance: 30 }, // 5% chance
             //{ type: "StickyPaddle", chance: 20 }, // 20% chance
             //{ type: "SlowBall", chance: 25 },    // 25% chance
             { type: "FireBall", chance: 15 },    // 15% chance
@@ -74,11 +79,12 @@
         let ballY;
         let ballDX;
         let ballDY;
-        let speed = 4;
+        let speed = 1;
         let rightPressed = false;
         let leftPressed = false;
         let firstThrow = true;
         let onFire = false;
+        let shield = false;
         let paused = true;
         let bricks = [];
         let powerUps = [];
@@ -121,7 +127,7 @@
             ballX = gameWidth / 2;
             ballY = gameHeight - 36;
             ballDX = 0; 
-            ballDY = -4;
+            ballDY = -speed;
         }
 
         function updateBallAndPaddle() {
@@ -164,6 +170,10 @@
                             heart.classList.add("heart");
                             livesContainer.appendChild(heart);
                             break;
+                        case "Shield":
+                            console.log("shield");
+                            shield = true;
+                            break;
                     }
                     
                     powerUps.splice(index, 1);
@@ -175,7 +185,6 @@
                 }
             });
         }
-
         updateLives(lives);
         createBricks();
         resetBallAndPaddle();
@@ -186,6 +195,7 @@
             if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = true;
             if (e.key === "p") if(!firstThrow) paused = !paused;
             if (e.key === " ") {
+                music.play();
                 paused = false;
                 firstThrow = false;
             }
