@@ -19,10 +19,11 @@
         <div id="startText">Press Space To Launch</div>
     </div>
     <div id="menuContainer" class="container">
-        <div id="settings"></div>
+        <div id="settings">
+            <div>Resume</div>
+        </div>
     </div>
     
-
     <script>
         const gameContainer = document.getElementById("gameContainer");
         const paddle = document.getElementById("paddle");
@@ -60,7 +61,7 @@
         
         const powerUpsInfo = [
             { type: "ExpandPaddle", chance: 30 }, // 30% chance
-            //{ type: "Shield", chance: 5 },
+            { type: "Shield", chance: 5 }, // 5% chance
             //{ type: "StickyPaddle", chance: 20 }, // 20% chance
             //{ type: "SlowBall", chance: 25 },    // 25% chance
             { type: "FireBall", chance: 15 },    // 15% chance
@@ -232,59 +233,43 @@
                         ballY + ballRadius > brick.y &&
                         ballY - ballRadius < brick.y + brick.height){
 
-                        ballDY = -ballDY;
-                        if(brick.level > 0){
-                            if(brick.level == 1){
+                        if (!onFire) ballDY = -ballDY;
+                        if(brick.level == 1){
+                            
+                            // 20% chance to generate a power-up
+                            if (Math.random() < 0.2) {
 
-                                // 20% chance to generate a power-up
-                                if (Math.random() < 0.2) {
+                                const totalChance = powerUpsInfo.reduce((sum, powerUp) => sum + powerUp.chance, 0);
+                                const random = Math.random() * totalChance;
 
-                                    const totalChance = powerUpsInfo.reduce((sum, powerUp) => sum + powerUp.chance, 0);
-                                    const random = Math.random() * totalChance;
+                                let chance = 0;
+                                for (const pwi of powerUpsInfo) {
+                                    chance += pwi.chance;
+                                    if (random <= chance) {
+                                        const powerUp = document.createElement("div");
+                                        powerUp.classList.add("powerUp");
+                                        powerUp.style.left = `${brick.element.offsetLeft + brickWidth / 2 - 10}px`;
+                                        powerUp.style.top = `${brick.y}px`;
+                                        powerUp.style.content = `url("${pwi.type}.svg")`;
+                                        gameContainer.appendChild(powerUp);
+                                        powerUps.push({
+                                            element: powerUp,
+                                            type: pwi.type
+                                        });
+                                        console.log(powerUps);
 
-                                    let chance = 0;
-                                    for (const pwi of powerUpsInfo) {
-                                        chance += pwi.chance;
-                                        if (random <= chance) {
-                                            const powerUp = document.createElement("div");
-                                            powerUp.classList.add("powerUp");
-                                            powerUp.style.left = `${brick.element.offsetLeft + brickWidth / 2 - 10}px`;
-                                            powerUp.style.top = `${brick.y}px`;
-                                            powerUp.style.content = `url("${pwi.type}.svg")`;
-                                            gameContainer.appendChild(powerUp);
-                                            powerUps.push({
-                                                element: powerUp,
-                                                type: pwi.type
-                                            });
-                                            console.log(powerUps);
-                                            
-                                            /*switch(pwi.type){
-                                                case "ExpandPaddle":
-                                                    powerUp.style.content = url("");
-                                                    gameContainer.appendChild(powerUp);
-                                                    powerUps.push({
-                                                        element: powerUp,
-                                                        type: "ExpandPaddle"
-                                                    });
-                                                    //paddle.style.width = paddleExpandedWidth;
-                                                    break;
-                                                case "ExtraLife":
-                                                    
-                                                    break;
-                                            }*/
-                                            break;
-                                        }
+                                        break;
                                     }
                                 }
-                                
-                                brick.element.remove();
+                            }
+                            
+                            brick.element.remove();
 
-                            } else brick.element.style.backgroundColor = bricksColors[brick.level-2];
-                            brick.level--;
-                        }
+                        } else brick.element.style.backgroundColor = bricksColors[brick.level-2];
+                        brick.level--;
                         score++;
                         scoreText.textContent = `Score: ${score}`;
-                        if (bricks.every(b => b.destroyed)) {
+                        if (bricks.every(b => b.level == 0)) {
                             alert("You win!");
                             document.location.reload();
                         }

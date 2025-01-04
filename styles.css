@@ -72,6 +72,7 @@ body {
     width: 100%;
     font-size: 20px;
     color: white;
+    user-select: none;
 }
 
 #lives {
@@ -111,6 +112,11 @@ body {
     background-color: #282c34;
     border: 2px solid #666666;
     border-radius: 12px;
+    color: white;
+    font-size: 38px;
+    padding: 60px 80px;
+    box-sizing: border-box;
+    user-select: none;
 }
 
 #menuBlur {
@@ -142,4 +148,5 @@ body {
     text-align: center;
     font-size: 36px;
     color: #b8b8b8;
+    user-select: none;
 }
