@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   width="130"
+   height="130"
+   id="svg2"
+   sodipodi:docname="extraLife.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="4.6505869"
+     inkscape:cx="60.099941"
+     inkscape:cy="64.185447"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <path
+     d="M 65.076023,24.715164 C 58.368219,13.535491 47.188546,5.7097197 33.772938,5.7097197 c -19.005445,0 -33.53901987,14.5335753 -33.53901987,33.5390193 0,36.892922 20.12341187,42.482759 64.84210487,84.965521 44.718687,-42.482762 64.842107,-48.072599 64.842107,-84.965521 0,-19.005444 -14.53358,-33.5390193 -33.539022,-33.5390193 -13.415608,0 -24.595281,7.8257713 -31.303085,19.0054443 z"
+     id="path4"
+     style="fill:#ff0707;stroke-width:1.11796" />
+  <rect
+     style="fill:#00850a;stroke:none;stroke-width:1.16416;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:1.6;paint-order:markers fill stroke"
+     id="rect1"
+     width="53.541"
+     height="11.82087"
+     x="37.199608"
+     y="57.422318" />
+  <rect
+     style="fill:#00850a;stroke:none;stroke-width:1.16416;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:1.6;paint-order:markers fill stroke"
+     id="rect1-9"
+     width="53.541428"
+     height="11.82087"
+     x="-90.134743"
+     y="59.142567"
+     transform="rotate(-90)" />
+</svg>

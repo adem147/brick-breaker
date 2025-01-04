@@ -1,0 +1,145 @@
+/* styles.css */
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+#gameContainer {
+    background-color: #000;
+    border: 2px solid #fff;
+}
+#menuContainer {
+    visibility: hidden;
+}
+.container {
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+#paddle {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    width: 100px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: #c0c0c0;
+    transform: translateY(50%);
+}
+
+#ball {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #c0c0c0;
+    border-radius: 50%;
+}
+
+#bricks {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+
+.brick {
+    position: absolute;
+    background-color: #fdf137;
+    /*border: 2px solid #6d6813;*/
+    border-radius: 2px;
+}
+.powerUp {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    font-size: 20px;
+    color: white;
+}
+
+#lives {
+    position: absolute;
+    width: auto;
+    height: 24px;
+    top: 26px;
+    right: 60px;
+    /*color: #0091ff;*/
+}
+
+.heart {
+    position: relative;
+    padding-right: 6px;
+    width: 22px;
+    height: 22px;
+    content: url("heart.svg");
+}
+
+#settingsBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    content: url("settings.svg");
+}
+
+#settings {
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    right: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(50%, -50%);
+    background-color: #282c34;
+    border: 2px solid #666666;
+    border-radius: 12px;
+}
+
+#menuBlur {
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: #00000098;
+    visibility: hidden;
+}
+
+#pause {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(50%, -50%);
+    content: url("pause.svg");
+    visibility: hidden; 
+}
+
+#startText {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    transform: translate(0%, -50%);
+    width: 100%;;
+    text-align: center;
+    font-size: 36px;
+    color: #b8b8b8;
+}
