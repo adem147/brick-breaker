@@ -18,14 +18,37 @@
         <div id="score"> Score: 0</div>
         <div id="lives"></div>
         <div id="menuBlur"></div>
-        <img id="settingsBtn" onclick="showSettings()"></img>
+        <img id="settingsBtn" onclick="showHideSettings(true)"></img> <!--the pause button-->
         <img id="pause"></img>
         <div id="startText">Press Space To Launch</div>
     </div>
+
     <div id="menuContainer" class="container">
         <div id="settings">
-            <div>Resume</div>
+            <div class = "settingsMenuItem" onclick="showHideSettings(false)">Resume</div>
+            <div class = "settingsMenuItem" onclick="showHideHelpMenu(true)">Help</div>
+            <div class = "settingsMenuItem">
+                    <img id="musicIcon"></img>
+                    <input type="checkbox" id="toggleMusic" onchange="OnOffMusic(musicPaused)">
+            </div>
         </div>
+    </div>
+
+    <div id="helpMenuContainer" class="container">
+        <img id="close" onclick="showHideHelpMenu(false)"></img>
+        <center><h4>How to Play</h4></center>
+            <p>Welcome to the Brick Breaker Game! Here's how to play:</p>
+            <ul>
+              <li><strong>Objective : </strong> Break all the bricks to win the game.</li>
+              <img src="help/Break_help.png">
+              <li><strong>Controls : </strong> Use the left and right arrow keys (or A/D) to move the paddle.</li>
+              <li><strong>Ball : </strong> The ball will bounce off the paddle and break the bricks.</li>
+              <img src="help/Bounce_help.png">
+              <li><strong>Power-ups : </strong> Collect power-ups that appear after breaking certain bricks to gain special abilities like faster ball speed or a larger paddle!</li>
+              <img src="help/PowerUp_help.png">
+              <li><strong>Leaderboard : </strong> Compete with other players and see your rank on the leaderboard by scoring the most points!</li>
+              <li><strong>Game Over : </strong> If the ball falls below the paddle, you lose a life!</li>
+            </ul>
     </div>
     
     <script>
@@ -37,10 +60,12 @@
         const scoreText = document.getElementById("score");
         const livesContainer = document.getElementById("lives");
         const menuContainer = document.getElementById("menuContainer");
+        const helpMenuContainer = document.getElementById("helpMenuContainer");
         const menuBlur = document.getElementById("menuBlur");
         const settingsMenu = document.getElementById("settings");
         const pauseIcon = document.getElementById("pause");
         const startText = document.getElementById("startText");
+        const musicIcon = document.getElementById("musicIcon");
 
         const gameWidth = 800;
         const gameHeight = 600;
@@ -85,6 +110,7 @@
         let firstThrow = true;
         let onFire = false;
         let shield = false;
+        let musicPaused = false;
         let paused = true;
         let bricks = [];
         let powerUps = [];
@@ -137,11 +163,44 @@
             ball.style.top = `${ballY - ballRadius}px`;
         }
         
-        function showSettings(){
-            paused = true;
-            gameContainer.style.filter = "blur(4px)"
-            menuContainer.style.visibility = "visible";
-            menuBlur.style.visibility = "visible";
+        function showHideSettings(show){
+
+            if(show){
+                paused = true;
+                gameContainer.style.filter = "blur(4px)";
+                menuContainer.style.visibility = "visible";
+                menuBlur.style.visibility = "visible";
+            }else{
+                if(!firstThrow)
+                    paused = false;
+                gameContainer.style.filter = "blur(0px)";
+                menuContainer.style.visibility = "hidden";
+                menuBlur.style.visibility = "hidden";
+            }
+        }
+        
+
+        function showHideHelpMenu(show){
+
+            if(show){
+                menuContainer.style.visibility = "hidden";
+                helpMenuContainer.style.visibility = "visible"
+            }else{
+                menuContainer.style.visibility = "visible";
+                helpMenuContainer.style.visibility = "hidden"
+            }
+        }
+
+        function OnOffMusic(on) {
+            if(on && !firstThrow){
+                music.play();
+                musicPaused = false;
+            }
+            else{
+                music.pause();
+                musicPaused = true;
+            }
+
         }
 
         function updatePowerUps(){
@@ -193,9 +252,10 @@
         document.addEventListener("keydown", (e) => {
             if (e.key === "Right" || e.key === "ArrowRight") rightPressed = true;
             if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = true;
-            if (e.key === "p") if(!firstThrow) paused = !paused;
-            if (e.key === " ") {
-                music.play();
+            if (e.key === "p") showHideSettings(!paused);
+            if (e.key === " " && firstThrow) {
+                if(!musicPaused)
+                    music.play();
                 paused = false;
                 firstThrow = false;
             }
@@ -207,6 +267,7 @@
         });
 
         function update() {
+            
             if (!paused){
                 pauseIcon.style.visibility = "hidden";
                 if (rightPressed && paddleX < gameWidth - paddleWidth) paddleX += 4; //move right

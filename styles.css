@@ -1,4 +1,4 @@
-/* styles.css */
+
 body {
     position: relative;
     margin: 0;
@@ -16,9 +16,55 @@ body {
     background-color: #000;
     border: 2px solid #fff;
 }
+
 #menuContainer {
     visibility: hidden;
 }
+
+#helpMenuContainer {
+     
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    right: 50%;
+    width: 75%;
+    height: 75%;
+    transform: translate(50%, -50%);
+    background-color: #282c34;
+    border: 2px solid #666666;
+    border-radius: 12px;
+    color: white;
+    font-size: 38px;
+    padding: 0%;
+    box-sizing: border-box;
+    user-select: none;
+    overflow-y: auto; /* Enable vertical scrolling */
+    visibility: hidden;
+}
+
+#helpMenuContainer ul ,p {
+    margin: 10px;
+    font-size: 60%;
+    text-shadow: 2px 2px 1px #000;
+   
+}
+
+#helpMenuContainer h4 {
+    margin-bottom: 4%;
+    color: #fdf137;
+    margin-top: 4%;
+    margin-left: px;
+    text-shadow: 2px 2px 3px #000;
+}
+
+
+
+#helpMenuContainer ul li {
+   
+    margin-top: 2%;
+   
+}
+
 .container {
     position: absolute;
     width: 800px;
@@ -102,21 +148,69 @@ body {
 }
 
 #settings {
+    
     position: absolute;
     z-index: 1000;
     top: 50%;
     right: 50%;
-    width: 400px;
-    height: 400px;
+    width: 50%;
+    height: 50%;
     transform: translate(50%, -50%);
     background-color: #282c34;
     border: 2px solid #666666;
     border-radius: 12px;
     color: white;
     font-size: 38px;
-    padding: 60px 80px;
+    padding: 0%;
     box-sizing: border-box;
     user-select: none;
+}
+
+.settingsMenuItem {
+    margin: 40px; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.settingsMenuItem:hover {
+    color: #fff672;
+}
+
+
+#toggleMusic {
+
+    display: flex;
+    align-items: center;
+    width: 30px; 
+    height: 30px; 
+    cursor: pointer;
+    appearance: none; 
+    border: 3px solid black; 
+    border-radius: 4px;
+    background-color: white; 
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Vertically center the checkmark */
+    justify-content: center; /* Horizontally center the checkmark */
+    position: relative;
+}
+
+#toggleMusic:checked {
+    background-color: rgb(188, 0, 0); 
+}
+
+#toggleMusic:checked::after {
+    content: "X"; 
+    color: white; 
+    font-size: 20px; 
+    
+}
+
+#musicIcon {
+    margin-right: 10px; 
+    margin-left: 0px;
 }
 
 #menuBlur {
@@ -137,6 +231,23 @@ body {
     transform: translate(50%, -50%);
     content: url("pause.svg");
     visibility: hidden; 
+}
+
+#close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    content: url("closeBotton.svg");
+}
+
+#musicIcon {
+    position : relative;
+    width: 20%;
+    height: 20%;
+    content: url("musicIcon.svg");
 }
 
 #startText {
